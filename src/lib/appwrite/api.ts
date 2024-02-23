@@ -115,3 +115,7 @@ export async function signOutAccount() {
     return error;
   }
 }
+
+export async function createPost(post: FormData) {}
+
+export async function updatePost(post: FormData) {}
