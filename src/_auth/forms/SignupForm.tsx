@@ -20,6 +20,7 @@ import {
   useSignin,
 } from "@/lib/react-query/queriesAndMutations";
 import { useUserContext } from "@/context/AuthContext";
+
 const SignupForm = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -36,6 +37,7 @@ const SignupForm = () => {
       password: "",
     },
   });
+
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
     const newuser = await createUserAccount(values);
     if (!newuser) {
@@ -68,6 +70,7 @@ const SignupForm = () => {
       return;
     }
   }
+
   return (
     <Form {...form}>
       <div className="flex-col sm:w-420 flex-center">
@@ -78,7 +81,6 @@ const SignupForm = () => {
         <p className="mt-2 text-light-3 small-medium md:base-regular">
           to use snaptime enter yout account details
         </p>
-
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col w-full gap-5 mt-4"
@@ -138,7 +140,6 @@ const SignupForm = () => {
           <Button type="submit" className="shad-button_primary">
             {isCreateUser ? (
               <div className="gap-2 flex-center">
-                {" "}
                 <Loader /> Loading...
               </div>
             ) : (
