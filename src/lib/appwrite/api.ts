@@ -199,3 +199,18 @@ export async function deleteFile(fileId: string) {
 }
 
 export async function updatePost(post: INewPost) {}
+
+export async function getRecentPosts() {
+  try {
+    const recentPosts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      [(Query.orderDesc("createdAt"), Query.limit(20))]
+    );
+    if (!recentPosts) throw new Error("No posts found");
+    return recentPosts;
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}

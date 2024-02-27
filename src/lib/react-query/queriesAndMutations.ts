@@ -7,6 +7,7 @@ import {
 import {
   createPost,
   createUserAccount,
+  getRecentPosts,
   signInAccount,
   signOutAccount,
   updatePost,
@@ -45,5 +46,12 @@ export const useCreatePost = () => {
 export const useUpdatePost = () => {
   return useMutation({
     mutationFn: (post: INewPost) => updatePost(post),
+  });
+};
+
+export const useGetRecentPosts = () => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
+    queryFn: getRecentPosts,
   });
 };
